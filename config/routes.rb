@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+ 
   resource :wizard do
     get :step1
     get :step2
