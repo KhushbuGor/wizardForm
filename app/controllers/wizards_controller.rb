@@ -19,6 +19,7 @@ class WizardsController < ApplicationController
     end
   
     def create
+  
       if @user_wizard.user.save
         session[:user_attributes] = nil
         redirect_to root_path, notice: 'User succesfully created!'
@@ -44,7 +45,7 @@ class WizardsController < ApplicationController
     end
   
     def user_wizard_params
-      params.require(:user_wizard).permit(:email, :first_name, :last_name, :address_1, :address_2, :zip_code, :city, :country, :phone_number)
+      params.require(:user_wizard).permit(:email, :first_name, :last_name, :address_1, :address_2, :zip_code, :city, :phone_number)
     end
   
     class InvalidStep < StandardError; end

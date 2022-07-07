@@ -26,7 +26,7 @@ module Wizard
       validates :address_1, presence: true
       validates :zip_code, presence: true
       validates :city, presence: true
-      validates :country, presence: true
+      
     end
 
     class Step4 < Step3
