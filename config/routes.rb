@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users do
+    get '/edit_user' => 'users#edit_user'
+    put '/edit_user/update' => 'users#update'
+  end
   resource :wizard do
     get :step1
     get :step2
@@ -11,5 +14,6 @@ Rails.application.routes.draw do
 
  
   root 'users#index'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

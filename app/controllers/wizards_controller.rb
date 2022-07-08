@@ -17,10 +17,7 @@ class WizardsController < ApplicationController
         render current_step
       end
     end
-    def update
-    end
-    
-  
+
     def create
   
       if @user_wizard.user.save
@@ -30,7 +27,16 @@ class WizardsController < ApplicationController
         redirect_to({ action: Wizard::User::STEPS.first }, alert: 'There were a problem when creating the user.')
       end
     end
+    def show
+      @user = current_user
+      render_wizard
+    end
   
+    def update 
+      @user = current_user
+      @user.update_attributes(params[:user])
+      render_wizard @user
+    end
     private
   
     def load_user_wizard
