@@ -17,6 +17,9 @@ class WizardsController < ApplicationController
         render current_step
       end
     end
+    def update
+    end
+    
   
     def create
   

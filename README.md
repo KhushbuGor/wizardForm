@@ -5,20 +5,19 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+# Ruby version
 
-* System dependencies
+Used Ruby version is -3.0.0 as mentioned in Gemfile 
+Rails version is -7.0.3
 
-* Configuration
+# System dependencies : 
 
-* Database creation
+ bundle install
 
-* Database initialization
+# Database migration
 
-* How to run the test suite
+ rails db:migrate
 
-* Services (job queues, cache servers, search engines, etc.)
+ # Starting the server To start the server on localhost run the command below. The server will start on default port 3000.
 
-* Deployment instructions
-
-* ...
+ rails s 
