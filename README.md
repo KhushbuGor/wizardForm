@@ -18,6 +18,6 @@ Rails version is -7.0.3
 
  rails db:migrate
 
- # Starting the server To start the server on localhost run the command below. The server will start on default port 3000.
+  Starting the server To start the server on localhost run the command below. The server will start on default port 3000.
 
  rails s 
