@@ -1,5 +1,10 @@
 <%= form_for @user, url: {action: :update}, :method => :put do |f| %>   
-     
+
+  
+  <div>   
+  <label>Email</label>   
+  <%= f.email_field :email %>
+</div>   
    
      <div>   
              <label>First Name</label>   
@@ -12,30 +17,35 @@
     </div>   
 
     <div>   
-      <label>Address</label>   
-      <%= f.text_field :address_1 %>
-    </div>   
+    <label>Address 1</label>   
+    <%= f.text_field :address_1 %>
+  </div>   
 
     <div>   
-    <label>Phone Number</label>   
-    <%= f.text_field :phone_number %>
-  </div>   
+      <label>Address 2</label>   
+      <%= f.text_field :address_2 %>
+    </div>   
+
+      
 
   <div>   
   <label>Zipcode</label>   
   <%= f.text_field :zip_code %>
 </div>   
 
-    <div>   
-    <label>Email</label>   
-    <%= f.email_field :email %>
-  </div>   
+   
     
   <div>   
   <label>City</label>   
   <%= f.text_field :city %>
-</div>   
-    <div>   
+</div>  
+
+
+<div>   
+    <label>Phone Number</label>   
+    <%= f.text_field :phone_number %>
+  </div> 
+      <div>   
        <%= link_to 'Back', { controller: 'users', action: 'index'} %>   
        <%= f.submit 'Update User' %>   
      </div>   
