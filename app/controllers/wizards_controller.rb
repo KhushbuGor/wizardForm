@@ -13,14 +13,15 @@ class WizardsController < ApplicationController
       else
         prev = Wizard::User::STEPS.third
       end
+
       @user_wizard = wizard_user_for_step(current_step)
+     
       if params[:user_wizard].present?
-        puts "valid"
         @user_wizard.user.attributes = user_wizard_params || {}
         session[:user_attributes] = @user_wizard.user.attributes
     
         if @user_wizard.valid?
-          puts 'save here'
+          
           next_step = wizard_user_next_step(current_step)
           create and return unless next_step
           redirect_to action: next_step
@@ -58,7 +59,6 @@ class WizardsController < ApplicationController
     end
   
     def wizard_user_next_step(step)
-      puts "abcd"
       Wizard::User::STEPS[Wizard::User::STEPS.index(step) + 1]
     end
   
