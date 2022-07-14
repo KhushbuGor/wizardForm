@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
-  <li><%= link_to "Step 1", step1_wizard_path %></li>
-  <li class="active">Step 2<%= link_to " next ", step3_wizard_path%></li>
-  <li>Step 3<%= link_to " next ", step4_wizard_path%></li>
+  <li><%= link_to "Step 1",validate_step_wizard_path(prev_step: 'step2', current_step: 'step1', user_wizard: @user_wizard) %></li>
+  <li class="active">Step 2<%= link_to " next ",validate_step_wizard_path(prev_step: 'step2', current_step: 'step2', user_wizard: @user_wizard)%></li>
+  <li>Step 3<%= link_to " next ", validate_step_wizard_path(prev_step: 'step2', current_step: 'step3', user_wizard: @user_wizard)%></li>
   <li>Step 4</li>
 </ol>
 

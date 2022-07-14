@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get :step4
 
     post :validate_step
+    get :validate_step
   end
 
  

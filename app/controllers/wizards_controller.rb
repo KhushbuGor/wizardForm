@@ -3,18 +3,32 @@ class WizardsController < ApplicationController
   
     def validate_step
       current_step = params[:current_step]
-  
-      @user_wizard = wizard_user_for_step(current_step)
-      @user_wizard.user.attributes = user_wizard_params
-      session[:user_attributes] = @user_wizard.user.attributes
-  
-      if @user_wizard.valid?
-        next_step = wizard_user_next_step(current_step)
-        create and return unless next_step
-  
-        redirect_to action: next_step
+      prev = params[:prev_step]
+      print("prev step is: ")
+      print(prev)
+      if prev == "step1"
+        prev = Wizard::User::STEPS.first
+      elsif prev == "step2"
+        prev = Wizard::User::STEPS.second
       else
-        render current_step
+        prev = Wizard::User::STEPS.third
+      end
+      @user_wizard = wizard_user_for_step(current_step)
+      if params[:user_wizard].present?
+        puts "valid"
+        @user_wizard.user.attributes = user_wizard_params || {}
+        session[:user_attributes] = @user_wizard.user.attributes
+    
+        if @user_wizard.valid?
+          puts 'save here'
+          next_step = wizard_user_next_step(current_step)
+          create and return unless next_step
+          redirect_to action: next_step
+        else
+          render current_step
+        end
+      else
+        redirect_to({ action: prev }, alert: 'Fill Empty Data first')
       end
     end
 
@@ -44,6 +58,7 @@ class WizardsController < ApplicationController
     end
   
     def wizard_user_next_step(step)
+      puts "abcd"
       Wizard::User::STEPS[Wizard::User::STEPS.index(step) + 1]
     end
   
@@ -52,8 +67,10 @@ class WizardsController < ApplicationController
   
       "Wizard::User::#{step.camelize}".constantize.new(session[:user_attributes])
     end
-  
+    
+    
     def user_wizard_params
+      params.permit(:current_step)
       params.require(:user_wizard).permit(:email, :first_name, :last_name, :address_1, :address_2, :zip_code, :city, :phone_number)
     end
   
